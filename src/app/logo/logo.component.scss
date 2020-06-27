@@ -1,0 +1,155 @@
+$deep-purple: #502f74;
+$lighter-purple: #a96ccd;
+
+// $brighten-color: #ff9e9e;
+$brighten-color: #feabfd;
+$base-color: white;
+
+:host {
+    // it should be possible to override this by setting the style on the
+    // component element
+    font-size: 72px;
+}
+
+@mixin slats-10($w, $rat: 0.5) {
+    // ON (purple) is 2x as wide as OFF (black)
+    $sz: 100% / (10 * (1 + $rat));
+    $off: $sz * $rat;
+    $paint: black;
+    $skip: transparent;
+    $slat: (
+        $paint $w + $sz,
+        $skip  $w + $sz,
+        $skip  $w + ($sz + $off),
+        $paint $w + ($sz + $off),
+        $paint $w + ($sz * 2 + $off),
+        $skip  $w + ($sz * 2 + $off),
+        $skip  $w + ($sz * 2 + $off * 2),
+        $paint $w + ($sz * 2 + $off * 2),
+        $paint $w + ($sz * 3 + $off * 2),
+        $skip  $w + ($sz * 3 + $off * 2),
+        $skip  $w + ($sz * 3 + $off * 3),
+        $paint $w + ($sz * 3 + $off * 3),
+        $paint $w + ($sz * 4 + $off * 3),
+        $skip  $w + ($sz * 4 + $off * 3),
+        $skip  $w + ($sz * 4 + $off * 4),
+        $paint $w + ($sz * 4 + $off * 4),
+        $paint $w + ($sz * 5 + $off * 4),
+        $skip  $w + ($sz * 5 + $off * 4),
+        $skip  $w + ($sz * 5 + $off * 5),
+        $paint $w + ($sz * 5 + $off * 5),
+        $paint $w + ($sz * 6 + $off * 5),
+        $skip  $w + ($sz * 6 + $off * 5),
+        $skip  $w + ($sz * 6 + $off * 6),
+        $paint $w + ($sz * 6 + $off * 6),
+        $paint $w + ($sz * 7 + $off * 6),
+        $skip  $w + ($sz * 7 + $off * 6),
+        $skip  $w + ($sz * 7 + $off * 7),
+        $paint $w + ($sz * 7 + $off * 7),
+        $paint $w + ($sz * 8 + $off * 7),
+        $skip  $w + ($sz * 8 + $off * 7),
+        $skip  $w + ($sz * 8 + $off * 8),
+        $paint $w + ($sz * 8 + $off * 8),
+        $paint $w + ($sz * 9 + $off * 8),
+        $skip  $w + ($sz * 9 + $off * 8),
+        $skip  $w + ($sz * 9 + $off * 9),
+        $paint $w + ($sz * 9 + $off * 9),
+        $paint $w + ($sz * 10 + $off * 9),
+        $skip  $w + ($sz * 10 + $off * 9),
+        $skip  $w + ($sz * 10 + $off * 10),
+    );
+
+    -webkit-mask-image: linear-gradient($slat);
+    mask-image: linear-gradient($slat);
+}
+
+.logo {
+    width: min-content;
+    text-align: center;
+
+    .title {
+        font-family: "Impact";
+        font-size: 400%;
+
+        // animation: neon 3s infinite;
+        &, .slatted {
+            // apply purpling
+            // XXX must apply to .slatted as well
+            background: linear-gradient($deep-purple 25%, $lighter-purple 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slatted {
+            // animation: slatin 3s 1;
+            @include slats-10(7%, 0.25);
+        }
+    }
+
+    .subtitle {
+        color: $lighter-purple;
+        font-family: "Arial";
+        letter-spacing: 0.5em;
+        transform: scaleX(0.9);
+        text-indent: 0.5em;
+    }
+}
+
+/*
+
+// maybe later...
+@keyframes neon {
+    0% {
+        text-shadow:
+            -1px -1px 1px $base-color
+            ,-1px 1px 1px $base-color
+            ,1px -1px 1px $base-color
+            ,1px 1px 1px $base-color
+            ,0 0 3px $base-color
+            ,0 0 10px $base-color
+            ,0 0 20px $base-color
+            ,0 0 30px $brighten-color
+            ,0 0 40px $brighten-color
+            ,0 0 50px $brighten-color
+            ,0 0 70px $brighten-color
+            ,0 0 100px $brighten-color
+            ,0 0 200px $brighten-color
+            ;
+    }
+    50% {
+        text-shadow:
+            -1px -1px 1px $base-color
+            ,-1px 1px 1px $base-color
+            ,1px -1px 1px $base-color
+            ,1px 1px 1px $base-color
+            ,0 0 5px $base-color
+            ,0 0 15px $base-color
+            ,0 0 25px $base-color
+            //,0 0 40px $brighten-color
+            //,0 0 50px $brighten-color
+            //,0 0 60px $brighten-color
+            //,0 0 80px $brighten-color
+            //,0 0 110px $brighten-color
+            //,0 0 210px $brighten-color
+            ;
+    }
+    100% {
+        text-shadow:
+            -1px -1px 1px $base-color
+            ,-1px 1px 1px $base-color
+            ,1px -1px 1px $base-color
+            ,1px 1px 1px $base-color
+            ,0 0 3px $base-color
+            ,0 0 10px $base-color
+            ,0 0 20px $base-color
+            ,0 0 30px $brighten-color
+            ,0 0 40px $brighten-color
+            ,0 0 50px $brighten-color
+            ,0 0 70px $brighten-color
+            ,0 0 100px $brighten-color
+            ,0 0 200px $brighten-color
+            ;
+    }
+
+}
+*/
