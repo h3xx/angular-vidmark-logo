@@ -1,7 +1,7 @@
 all: angular-prod
 
 angular-prod:
-	npm install && npx ng build --prod
+	pnpm install && pnpx ng build --prod
 
 deploy: angular-prod
 	git branch -D gh-pages; true
